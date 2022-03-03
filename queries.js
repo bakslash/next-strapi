@@ -6,7 +6,9 @@ query getArticles{
     data{
       attributes{
         title
+        description
         slug
+        createdAt
       }
     }
   }

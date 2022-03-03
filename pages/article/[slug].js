@@ -1,20 +1,20 @@
 import { GET_ARTICLES } from '../../queries'
 import client from '../../apollo_client'
-export default function Home(categories) {
+export default function Home(articles) {
 
-    console.log(categories);
+    console.log(articles);
     return (
         <div>
-         <p>test</p>
+         <p>test art</p>
         </div>
     )
   }
 
   export async function getStaticPaths() {
     const { data } = await client.query({query:GET_ARTICLES})
-    const categories =data.categories.data
-    const paths = categories.map((category) => ({
-      params: { slug: category.attributes.slug },
+    const articles =data.articles.data
+    const paths = articles.map((article) => ({
+      params: { slug: article.attributes.slug },
     }))
     return {paths,fallback: true };
   }
@@ -24,7 +24,7 @@ export default function Home(categories) {
   console.log("try params",params);
     return {
       props: {
-        category: params.slug
+        article: params.slug
       },
       revalidate: 1,
     }
